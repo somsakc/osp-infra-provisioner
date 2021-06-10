@@ -1,1 +1,12 @@
-
+---
+- hosts:
+  tasks:
+  - name: Delete server instances
+    os_server:
+        name: "{{ __openstack_server.instance_name }}"
+        state: absent
+    loop: "{{ openstack_servers }}"
+    loop_control:
+        loop_var: __openstack_server
+    async: 900
+    poll: 0

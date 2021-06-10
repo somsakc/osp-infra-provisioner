@@ -10,3 +10,5 @@
         loop_var: __openstack_server
     async: 900
     poll: 0
+
+- import_playbook: update_dns.yml

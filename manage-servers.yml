@@ -10,4 +10,5 @@
 
     - openstack_manage_servers
 
+- import_playbook: update_dns.yml
 ...

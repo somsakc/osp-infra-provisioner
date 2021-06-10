@@ -1,5 +1,5 @@
 ---
-- hosts: control
+- hosts: control_node
   tasks:
   - name: Delete server instances
     os_server:

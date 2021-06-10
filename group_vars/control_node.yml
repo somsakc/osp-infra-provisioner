@@ -4,8 +4,8 @@ openstack_cloud: "{{GUID}}-project"
 
 openstack_servers:
 
-  - instance_name: osp_app1
-    AnsibleGroup: osp_apps
+  - instance_name: web1
+    AnsibleGroup: backends
     deployment: prod
     security_group_name: "{{GUID}}-HostSG"
     image: "{{ _server_image | default('rhel-8.3') }}"
@@ -13,8 +13,8 @@ openstack_servers:
     flavor: GLOBAL-CPU_4_Memory_32768_Disk_60_flavor
     key_name: "{{GUID}}-keypair"
     network: "{{GUID}}-prod-network"
-  - instance_name: osp_app2
-    AnsibleGroup: osp_apps
+  - instance_name: web2
+    AnsibleGroup: backend_servers
     deployment: prod
     security_group_name: "{{GUID}}-HostSG"
     image: "{{ _server_image | default('rhel-8.3') }}"
@@ -22,8 +22,8 @@ openstack_servers:
     flavor: GLOBAL-CPU_4_Memory_32768_Disk_60_flavor
     key_name: "{{GUID}}-keypair"
     network: "{{GUID}}-prod-network"
-  - instance_name: osp_appdb
-    AnsibleGroup: osp_appdbs
+  - instance_name: db
+    AnsibleGroup: database_servers
     deployment: prod
     security_group_name: "{{GUID}}-HostSG"
     image: "{{ _server_image | default('rhel-8.3') }}"
@@ -31,8 +31,8 @@ openstack_servers:
     flavor: GLOBAL-CPU_4_Memory_32768_Disk_60_flavor
     key_name: "{{GUID}}-keypair"
     network: "{{GUID}}-prod-network"
-  - instance_name: osp_frontend
-    AnsibleGroup: osp_frontends
+  - instance_name: lb
+    AnsibleGroup: load_balancers
     deployment: prod
     security_group_name: "{{GUID}}-HostSG"
     image: "{{ _server_image | default('rhel-8.3') }}"

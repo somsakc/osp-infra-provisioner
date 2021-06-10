@@ -1,6 +1,6 @@
 ---
 - name: Manage OpenStack Servers
-  hosts: localhost
+  hosts: control_node
   gather_facts: false
   become: false
   collections:

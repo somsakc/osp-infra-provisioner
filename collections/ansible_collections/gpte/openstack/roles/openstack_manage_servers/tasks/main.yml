@@ -1,6 +1,6 @@
 - name: Create server instances
   os_server:
-    cloud:            "{{ __openstack_server.openstack_cloud                           | default('openstack') }}"
+ #   cloud:            "{{ __openstack_server.openstack_cloud                           | default('openstack') }}"
     name:             "{{ __openstack_server.instance_name }}"
     state:            "{{ openstack_server_state                    | default(__openstack_server.state) | default('present') }}"
     image:            "{{ __openstack_server.image                  | default('rhel-8.3') }}"
@@ -41,7 +41,7 @@
 
      - name: Get Openstack server info
        os_server_info:
-         cloud:     "{{ __openstack_server.openstack_cloud   | default('openstack') }}"
+  #       cloud:     "{{ __openstack_server.openstack_cloud   | default('openstack') }}"
          server:      "{{ __openstack_server.instance_name }}"
        loop: "{{ openstack_servers }}"
        loop_control:

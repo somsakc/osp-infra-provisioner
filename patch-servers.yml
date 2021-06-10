@@ -9,3 +9,22 @@
   roles:
 
     - openstack_manage_inmemory_inventory
+
+- name: update resolve.conf
+  hosts: appdbs,apps,frontends
+  become: true
+  tasks:
+    - name: Insert DNS IP
+      command: >-
+        nmcli connection modify "System eth0"
+        ipv4.ignore-auto-dns yes
+        ipv4.dns {{ ansible_default_ipv4.address }}
+        +ipv4.dns {{ ansible_dns.nameservers.0 }}
+        +ipv4.dns 8.8.8.8
+    
+    - name: Restart NetworkManager
+      service:
+        name: NetworkManager
+        state: restarted
+
+

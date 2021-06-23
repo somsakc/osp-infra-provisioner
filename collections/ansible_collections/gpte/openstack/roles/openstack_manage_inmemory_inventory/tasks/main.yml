@@ -5,7 +5,6 @@
 
     - name: Fetch Instance Info
       os_server_info:
-        cloud: "{{ openstack_cloud | default('openstack') }}"
         region_name: "{{ openstack_region | default('regionOne') }}"
       register: r_instances
 
@@ -38,16 +37,7 @@
         loop_control:
           loop_var: __instance
 
-      - name: Generate lab static inventory file
-        template:
-          src: lab_inventory.j2
-          dest: "/tmp/my_inventory"
-        delegate_to: localhost
-
-      - name: Output location of example of inventory
-        debug:
-          msg: Your inventory was output to /tmp/my_inventory
-
+      
   tags:
     - openstack-inventory
     - must

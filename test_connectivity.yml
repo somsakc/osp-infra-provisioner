@@ -9,7 +9,8 @@
 
     - name: Add host(s) to inventory
       add_host:
-        name: "{{ __instance.private_v4 }}"
+        name: "{{ __instance.name }}"
+        ansible_host: "{{ __instance.private_v4 }}" 
         group: 
           - "{{ __instance.metadata.AnsibleGroup }}"
       loop: "{{ r_instances.openstack_servers }}"
